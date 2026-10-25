@@ -1,1 +1,4 @@
-
+#Detect Lsass Dumping attack Via comsvcs.dll
+index=* EventCode=1
+| where like(CommandLine,"%comsvcs.dll%") AND like(CommandLine,"%MiniDump%")
+| table -time ,host ,User ,Image ,CommandLine ,ParentImage ,ParentCommandLine
